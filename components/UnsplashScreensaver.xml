@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component name="UnsplashScreensaver" extends="Scene" >
+    <script type="text/brightscript" uri = "pkg:/components/UnsplashScreensaver.brs"/>
+
+    <children>
+
+        <Poster
+            id="background"
+            loadDisplayMode="scaleToZoom"
+            translation='[0,0]'
+            width='1920'
+            height='1080'
+        />
+
+        <!-- Overlay -->
+        <Rectangle
+            width="1920"
+            height="1080"
+            translation='[0,0]'
+            color="0x0000004C"
+        />
+
+        <!-- Temperature Label -->
+        <SimpleLabel
+            id='temperature_label'
+            horizOrigin='right'
+            translation='[1885, 35]'
+            fontUri="pkg:/fonts/raleway/Raleway-Regular.ttf"
+            fontSize="40"
+        />
+
+        <!-- Date/Time -->
+        <SimpleLabel
+            id='date_label'
+            horizOrigin='right'
+            translation='[1885, 530]'
+            fontUri="pkg:/fonts/raleway/Raleway-Regular.ttf"
+            fontSize="48"
+        />
+        <SimpleLabel
+            id='time_label'
+            horizOrigin='right'
+            translation='[1885, 580]'
+            fontUri="pkg:/fonts/raleway/Raleway-Regular.ttf"
+            fontSize="95"
+        />
+            <!-- fontUri="font:SystemFontFile" -->
+
+        <Timer
+            id='secondTimer'
+            repeat='true'
+            duration="1"
+        />
+
+    </children>
+</component>
