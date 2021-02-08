@@ -44,7 +44,7 @@ end sub
 Function getBackground()
     request = CreateObject("roUrlTransfer")
     request.SetCertificatesFile("common:/certs/ca-bundle.crt")
-    request.SetUrl("https://api.unsplash.com/photos/random?orientation=landscape&features=true")
+    request.SetUrl("https://api.unsplash.com/photos/random?orientation=landscape&featured=true")
     request.AddHeader("Authorization", "Client-ID " + m.config.unsplash_api_key)
     response = request.GetToString()
 
