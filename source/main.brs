@@ -1,4 +1,5 @@
-Function RunScreenSaver(params as Object) as Object 'This function is required for screensavers. It acts as a main method for screensavers
+' This function is required for screensavers. It acts as a main method for screensavers
+Function RunScreenSaver(params as Object) as Object
     main()
 End Function
 
@@ -6,9 +7,9 @@ sub main()
     m.config = ReadAsciiFile("pkg:/config.json")
     m.config = ParseJSON(m.config)
 
-    screen = createObject("roSGScreen") 'Creates screen to display screensaver
+    screen = createObject("roSGScreen") ' Creates screen to display screensaver
 
-    port = createObject("roMessagePort") 'Port to listen to events on screen
+    port = createObject("roMessagePort") ' Port to listen to events on screen
     screen.setMessagePort(port)
 
     m.zip = getZip()
@@ -18,13 +19,13 @@ sub main()
 
     counter = 0
 
-    scene = screen.createScene("UnsplashScreensaver") 'Creates scene to display on screen. Scene name (AnimatedScreensaver) must match ID of XML Scene Component
+    scene = screen.createScene("UnsplashScreensaver") ' Creates scene to display on screen. Scene name must match ID of XML Scene Component
     screen.show()
 
     m.global.BackgroundUri = getBackground()
     m.global.Weather = getWeather()
 
-    while(true) 'Uses message port to listen if channel is closed
+    while(true) ' Uses message port to listen if channel is closed
         msg = wait(1, port)
         counter++
         if (msg <> invalid)
@@ -63,7 +64,7 @@ end Function
 Function getZip()
     request = CreateObject("roUrlTransfer")
     request.SetCertificatesFile("common:/certs/ca-bundle.crt")
-    request.SetUrl("http://api.ipstack.com/check?access_key="+m.config.ipstack_api_key)
+    request.SetUrl("http://api.ipstack.com/check?access_key=" + m.config.ipstack_api_key)
     response = request.GetToString()
 
     if(response <> "")
@@ -83,7 +84,7 @@ end Function
 Function getWeather()
     request = CreateObject("roUrlTransfer")
     request.SetCertificatesFile("common:/certs/ca-bundle.crt")
-    request.SetUrl("https://api.openweathermap.org/data/2.5/weather?zip="+m.zip+"&APPID="+m.config.openweathermap_api_key)
+    request.SetUrl("https://api.openweathermap.org/data/2.5/weather?zip=" + m.zip+"&APPID=" + m.config.openweathermap_api_key)
     response = request.GetToString()
 
     if(response <> "")
